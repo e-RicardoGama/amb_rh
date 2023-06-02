@@ -142,20 +142,20 @@ app.layout = dbc.Container(children=[
                             ])
                 ])
             ], style=tab_card)
-        ], md=2, sm=2, lg=2),
+        ], md=3, sm=3, lg=2),
         dbc.Col([
             dbc.Card([
                 dbc.CardBody([
                         dbc.Row([
                             dbc.Col([
                                 html.H6('Relatório dos Perfis para Download'),
-                            ],sm=4,md=4,lg=4),
+                            ],sm=12,md=12,lg=4),
                         dbc.Row([
                             dbc.Col([
                                 dbc.Button('Todos Perfis', color='primary', id='btn_todos', n_clicks=0,
                                            style={'margin-top': '10px'}),
                                 dcc.Download(id='todos'),
-                                    ],sm=4,md=4,lg=4),
+                                    ],sm=2,md=2,lg=4),
                             dbc.Col([
                                 dbc.Button('Perfil 1', color='primary', id='btn_p1', n_clicks=0,
                                            style={'margin-top': '10px'}),
@@ -192,42 +192,30 @@ app.layout = dbc.Container(children=[
                     dbc.Col([
                         dbc.Row([
                             dbc.Col([
-                                html.H6('Satisfação com Ambiente')
-                                ],sm=2,md=2,lg=2),
+                                html.H6('Satisfação com Ambiente'),
+                                dcc.Graph(id='graph1',className='dbc',config=config_graph),
+                                ],sm=4,md=4,lg=2),
                             dbc.Col([
-                                html.H6('Envolvimento')
-                            ],sm=2,md=2,lg=2),
+                                html.H6('Envolvimento com equipe'),
+                                dcc.Graph(id='graph2', className='dbc', config=config_graph)
+                            ],sm=4,md=4,lg=2),
                             dbc.Col([
-                                html.H6('Satisfação com Trabalho')
-                            ],sm=2,md=2,lg=2),
+                                html.H6('Satisfação com Trabalho'),
+                                dcc.Graph(id='graph3', className='dbc', config=config_graph)
+                            ],sm=4,md=4,lg=2),
                             dbc.Col([
-                                html.H6('Relacionamento')
-                            ],sm=2,md=2,lg=2),
+                                html.H6('Relacionamento'),
+                                dcc.Graph(id='graph4', className='dbc', config=config_graph)
+                            ],sm=6,md=6,lg=2),
                             dbc.Col([
-                                html.H6('Balanço entre Vida Pessoal e Profissional')
-                            ],sm=3,md=3,lg=3)
+                                html.H6('Vida Pessoal e Profissional'),
+                                dcc.Graph(id='graph5', className='dbc', config=config_graph)
+                            ],sm=6,md=6,lg=3)
                         ]),
-                            dbc.Row([
-                                dbc.Col([
-                                    dcc.Graph(id='graph1', className='dbc', config=config_graph)
-                                ],sm=2,md=2,lg=2),
-                                dbc.Col([
-                                    dcc.Graph(id='graph2', className='dbc', config=config_graph)
-                                ],sm=2,md=2,lg=2),
-                                dbc.Col([
-                                    dcc.Graph(id='graph3', className='dbc', config=config_graph)
-                                ],sm=2,md=2,lg=2),
-                                dbc.Col([
-                                    dcc.Graph(id='graph4', className='dbc', config=config_graph)
-                                ],sm=2,md=2,lg=2),
-                                dbc.Col([
-                                    dcc.Graph(id='graph5', className='dbc', config=config_graph)
-                                ],sm=2,md=2,lg=2),
-                            ])
                     ]),
                 ]),
             ], style=tab_card),
-        ],sm=10,md=10,lg=10),
+        ],sm=9,md=9,lg=10),
         dbc.Col([
             dbc.Card([
                 dbc.CardBody([
@@ -244,7 +232,7 @@ app.layout = dbc.Container(children=[
                     ])
                 ])
             ],style=tab_card),
-        ],sm=2,md=2,lg=2)
+        ],sm=3,md=3,lg=2)
     ], className='g-1 my-auto', style={'margin-top': '7px'}),
 
     # Linha 4
@@ -267,7 +255,7 @@ app.layout = dbc.Container(children=[
                     ]),
                 ]),
             ], style=tab_card),
-        ],sm=6,md=6,lg=6),
+        ],sm=12,md=12,lg=6),
         dbc.Col([
             dbc.Card([
                 dbc.CardBody([
@@ -285,7 +273,7 @@ app.layout = dbc.Container(children=[
                     ])
                 ])
             ], style=tab_card)
-            ],sm=6,md=6,lg=6)
+            ],sm=12,md=12,lg=6)
     ], className='g-1 my-auto', style={'margin-top': '7px'}),
 
     # Linha 5
@@ -308,7 +296,7 @@ app.layout = dbc.Container(children=[
                     ]),
                 ]),
             ], style=tab_card),
-        ], sm=6, md=6, lg=6),
+        ], sm=12, md=12, lg=6),
         dbc.Col([
             dbc.Card([
                 dbc.CardBody([
@@ -326,7 +314,7 @@ app.layout = dbc.Container(children=[
                     ])
                 ])
             ], style=tab_card)
-        ], sm=6, md=6, lg=6)
+        ], sm=12, md=12, lg=6)
     ], className='g-1 my-auto', style={'margin-top': '7px'}),
 
 ], fluid=True, style={'height': '100vh'})
@@ -791,4 +779,4 @@ def graph11(perfil):
 
 # Run server
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    app.run_server(debug=False)
