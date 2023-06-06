@@ -113,7 +113,7 @@ app.layout = dbc.Container(children=[
             dbc.Card([
                dbc.CardBody([
                     dbc.Col([
-                        html.H3('Segmentação dos colaboradores por similaridades identificadas em pesquisa interna'),
+                        html.H3('Clima Organizacional'),
                     ])
                 ], style=tab_card)
             ])
@@ -142,45 +142,78 @@ app.layout = dbc.Container(children=[
                             ])
                 ])
             ], style=tab_card)
-        ], md=3, sm=3, lg=2),
+        ], sm=4, md=4, lg=2),
         dbc.Col([
             dbc.Card([
                 dbc.CardBody([
                         dbc.Row([
                             dbc.Col([
                                 html.H6('Relatório dos Perfis para Download'),
-                            ],sm=12,md=12,lg=4),
+                            ],sm=12,md=12,lg=12),
                         dbc.Row([
                             dbc.Col([
                                 dbc.Button('Todos Perfis', color='primary', id='btn_todos', n_clicks=0,
                                            style={'margin-top': '10px'}),
                                 dcc.Download(id='todos'),
-                                    ],sm=2,md=2,lg=4),
+                                    ],sm=2,md=2,lg=3),
                             dbc.Col([
                                 dbc.Button('Perfil 1', color='primary', id='btn_p1', n_clicks=0,
                                            style={'margin-top': '10px'}),
                                 dcc.Download(id='p1'),
-                                    ],sm=2,md=2,lg=2),
+                                    ],sm=2,md=2,lg=3),
                             dbc.Col([
                                 dbc.Button('Perfil 2', color='primary', id='btn_p2', n_clicks=0,
                                            style={'margin-top': '10px'}),
                                 dcc.Download(id='p2'),
-                                    ],sm=2,md=2,lg=2),
+                                    ],sm=2,md=2,lg=3),
                             dbc.Col([
                                 dbc.Button('Perfil 3', color='primary', id='btn_p3', n_clicks=0,
                                            style={'margin-top': '10px'}),
                                 dcc.Download(id='p3'),
-                                    ],sm=2,md=2,lg=2),
-                            dbc.Col([
-                                dbc.Button('Perfil 4', color='primary', id='btn_p4', n_clicks=0,
-                                           style={'margin-top': '10px'}),
-                                dcc.Download(id='p4'),
-                                    ],sm=2,md=2,lg=2),
+                                    ],sm=2,md=2,lg=3),
                             ]),
                         ]),
                 ]),
             ], style=tab_card),
-        ])
+        ],sm=8,md=8,lg=3),
+        dbc.Col([
+            dbc.Card([
+                dbc.CardBody([
+                        dbc.Row([
+                            dbc.Col([
+                                html.H6('Médias por Perfil'),
+                            ]),
+                        ]),
+                        dbc.Row([
+                            dbc.Col([
+                                dcc.Graph(id='graph7',className='dbc',config=config_graph),
+                            ],sm=12,md=12,lg=6, style={'margin-top':'10px'}),
+                            dbc.Col([
+                                dcc.Graph(id='graph8',className='dbc',config=config_graph),
+                            ],sm=12,md=12,lg=6, style={'margin-top':'10px'}),
+                        ]),
+                ]),
+            ],style=tab_card)
+        ],sm=6,md=6,lg=3),
+        dbc.Col([
+            dbc.Card([
+                dbc.CardBody([
+                    dbc.Row([
+                        dbc.Col([
+                            html.H6('Satisfação com Ambiente'),
+                        ]),
+                    ]),
+                    dbc.Row([
+                        dbc.Col([
+                            dcc.Graph(id='graph1', className='dbc', config=config_graph),
+                        ], sm=12, md=6, lg=6),
+                        dbc.Col([
+                            dcc.Graph(id='graph12', className='dbc', config=config_graph),
+                        ], sm=12, md=6, lg=6),
+                    ]),
+                ]),
+            ],style=tab_card),
+        ],sm=6,md=6,lg=4),
     ], className='g-1 my-auto', style={'margin-top': '7px'}),
 
     # Linha 3
@@ -192,47 +225,84 @@ app.layout = dbc.Container(children=[
                     dbc.Col([
                         dbc.Row([
                             dbc.Col([
-                                html.H6('Satisfação com Ambiente'),
-                                dcc.Graph(id='graph1',className='dbc',config=config_graph),
-                                ],sm=4,md=4,lg=2),
+                                html.H6('Envolvimento'),
+                            ]),
+                        ]),
+                        dbc.Row([
                             dbc.Col([
-                                html.H6('Envolvimento com equipe'),
-                                dcc.Graph(id='graph2', className='dbc', config=config_graph)
-                            ],sm=4,md=4,lg=2),
+                                dcc.Graph(id='graph2', className='dbc', config=config_graph),
+                            ]),
                             dbc.Col([
-                                html.H6('Satisfação com Trabalho'),
-                                dcc.Graph(id='graph3', className='dbc', config=config_graph)
-                            ],sm=4,md=4,lg=2),
-                            dbc.Col([
-                                html.H6('Relacionamento'),
-                                dcc.Graph(id='graph4', className='dbc', config=config_graph)
-                            ],sm=6,md=6,lg=2),
-                            dbc.Col([
-                                html.H6('Vida Pessoal e Profissional'),
-                                dcc.Graph(id='graph5', className='dbc', config=config_graph)
-                            ],sm=6,md=6,lg=3)
+                                dcc.Graph(id='graph13', className='dbc', config=config_graph),
+                            ]),
+                            ]),
                         ]),
                     ]),
-                ]),
-            ], style=tab_card),
-        ],sm=9,md=9,lg=10),
+                ],style=tab_card),
+            ],sm=6,md=6,lg=3),
         dbc.Col([
             dbc.Card([
                 dbc.CardBody([
-                    dbc.Row([
-                        dbc.Col([
-                       html.H6('Médias por Perfil')
+                    dbc.Col([
+                        dbc.Row([
+                            dbc.Col([
+                                html.H6('Satisfação com Trabalho'),
+                            ]),
+                        ]),
+                        dbc.Row([
+                            dbc.Col([
+                                dcc.Graph(id='graph3', className='dbc', config=config_graph),
+                            ]),
+                            dbc.Col([
+                                dcc.Graph(id='graph14', className='dbc', config=config_graph),
+                            ]),
+                            ]),
                         ]),
                     ]),
-                    dbc.Row([
-                        dbc.Col([
-                            dcc.Graph(id='graph7', className='dbc',config=config_graph),
-                            dcc.Graph(id='graph8', className='dbc', config=config_graph),
-                        ],sm=12,md=12,lg=12, style={'margin-top':'25px'}),
-                    ])
-                ])
-            ],style=tab_card),
-        ],sm=3,md=3,lg=2)
+                ],style=tab_card),
+            ],sm=6,md=6,lg=3),
+        dbc.Col([
+            dbc.Card([
+                dbc.CardBody([
+                    dbc.Col([
+                        dbc.Row([
+                            dbc.Col([
+                                html.H6('Relacionamento'),
+                            ]),
+                        ]),
+                        dbc.Row([
+                            dbc.Col([
+                                dcc.Graph(id='graph4', className='dbc', config=config_graph),
+                            ]),
+                            dbc.Col([
+                                dcc.Graph(id='graph15', className='dbc', config=config_graph),
+                            ]),
+                            ]),
+                        ]),
+                    ]),
+                ],style=tab_card),
+            ],sm=6,md=6,lg=3),
+        dbc.Col([
+            dbc.Card([
+                dbc.CardBody([
+                    dbc.Col([
+                        dbc.Row([
+                            dbc.Col([
+                                html.H6('Balanço Vida-Profissão'),
+                            ]),
+                        ]),
+                        dbc.Row([
+                            dbc.Col([
+                                dcc.Graph(id='graph5', className='dbc', config=config_graph),
+                            ]),
+                            dbc.Col([
+                                dcc.Graph(id='graph16', className='dbc', config=config_graph),
+                            ]),
+                            ]),
+                        ]),
+                    ]),
+                ],style=tab_card),
+            ],sm=6,md=6,lg=3),
     ], className='g-1 my-auto', style={'margin-top': '7px'}),
 
     # Linha 4
@@ -391,23 +461,6 @@ def func(n_clicks):
 
     return dcc.send_data_frame(p3.to_excel, "Perfil 3.xlsx", sheet_name="Sheet_name_1")
 
-# Perfil 4
-
-@app.callback(
-    Output('p4', 'data'),
-    Input('btn_p4', 'n_clicks'),
-    prevent_initial_call=True,
-)
-
-def func(n_clicks):
-
-    if n_clicks == None:
-        raise PreventUpdate
-
-    p4 = df.loc[df['Perfil'] == 4]
-
-    return dcc.send_data_frame(p4.to_excel, "Perfil 4.xlsx", sheet_name="Sheet_name_1")
-
 # Graph 1
 
 @app.callback(
@@ -427,7 +480,7 @@ def graph1(perfil):
     fig1 = go.Figure()
     fig1.add_trace(go.Pie(labels=sa['Avaliação'], values=sa['Satisfação Ambiente'], hole=.5))
     fig1.update(layout_showlegend=False)
-    fig1.update_layout(main_config, height=140, template='superhero')
+    fig1.update_layout(main_config, height=100, template='superhero')
 
     return fig1
 
@@ -450,7 +503,7 @@ def graph2(perfil):
     fig2 = go.Figure()
     fig2.add_trace(go.Pie(labels=env['Avaliação'], values=env['Envolvimento'], hole=.5))
     fig2.update(layout_showlegend=False)
-    fig2.update_layout(main_config, height=140, template='superhero')
+    fig2.update_layout(main_config, height=120, template='superhero')
 
     return fig2
 
@@ -473,7 +526,7 @@ def graph3(perfil):
     fig3 = go.Figure()
     fig3.add_trace(go.Pie(labels=st['Avaliação'], values=st['Satisfação Trabalho'], hole=.5))
     fig3.update(layout_showlegend=False)
-    fig3.update_layout(main_config, height=140, template='superhero')
+    fig3.update_layout(main_config, height=120, template='superhero')
 
     return fig3
 
@@ -496,7 +549,7 @@ def graph4(perfil):
     fig4 = go.Figure()
     fig4.add_trace(go.Pie(labels=re['Avaliação'], values=re['Relacionamento'], hole=.5))
     fig4.update(layout_showlegend=False)
-    fig4.update_layout(main_config, height=140, template='superhero')
+    fig4.update_layout(main_config, height=120, template='superhero')
 
     return fig4
 
@@ -519,7 +572,7 @@ def graph5(perfil):
     fig5 = go.Figure()
     fig5.add_trace(go.Pie(labels=vp['Avaliação'], values=vp['Balanço Vida-Profissão'], hole=.5))
     fig5.update(layout_showlegend=False)
-    fig5.update_layout(main_config, height=140, template='superhero')
+    fig5.update_layout(main_config, height=120, template='superhero')
 
     return fig5
 
@@ -590,11 +643,11 @@ def graph7(perfil):
 
     fig7 = go.Figure()
     fig7.add_trace(go.Indicator(mode='number',
-                                 title={"text": f"<span style='font-size:85%'>Renda Média</span><br>"},
+                                 title={"text": f"<span style='font-size:80%'>Renda Média</span><br>"},
                                  value=renda['Renda'].iloc[0],
                                  number={'prefix': "$"},
                                  ))
-    fig7.update_layout(margin=dict(l=0, r=0, t=20, b=20), height=70, template='superhero')
+    fig7.update_layout(margin=dict(l=0, r=0, t=20, b=20), height=100, template='superhero')
 
     return fig7
 
@@ -614,11 +667,11 @@ def graph8(perfil):
 
     fig8 = go.Figure()
     fig8.add_trace(go.Indicator(mode='number',
-                                 title={"text": f"<span style='font-size:85%'>Média de Idade</span><br>"},
+                                 title={"text": f"<span style='font-size:80%'>Média de Idade</span><br>"},
                                  value=idade['Idade'].iloc[0],
                                  number={'prefix': ""},
                                  ))
-    fig8.update_layout(margin=dict(l=20, r=20, t=20, b=20), height=70, template='superhero')
+    fig8.update_layout(margin=dict(l=20, r=20, t=20, b=20), height=100, template='superhero')
 
     return fig8
 
@@ -776,7 +829,132 @@ def graph11(perfil):
 
     return fig11
 
+# Graph 12
+@app.callback(
+    Output('graph12','figure'),
+    Input('dropdown','value'),
+)
+
+def graph12(perfil):
+
+    mask = perfil_filtro(perfil)
+    sa = df.loc[mask]
+
+    sa = sa.groupby('Satisfação Ambiente')['ID_Func'].count().reset_index()
+    sa = sa.sort_values('ID_Func',ascending=True)
+
+    fig12 = go.Figure(go.Bar(
+        x=sa['ID_Func'],
+        y=sa['Satisfação Ambiente'],
+        orientation='h',
+        textposition='auto',
+        text=sa['ID_Func'],
+        insidetextfont=dict(family='Times', size=12)))
+    fig12.update_layout(main_config, height=100, template='superhero')
+
+    return fig12
+
+# Graph 13
+@app.callback(
+    Output('graph13','figure'),
+    Input('dropdown','value'),
+)
+
+def graph13(perfil):
+
+    mask = perfil_filtro(perfil)
+    env = df.loc[mask]
+
+    env = env.groupby('Envolvimento')['ID_Func'].count().reset_index()
+    env = env.sort_values('ID_Func',ascending=True)
+
+    fig13 = go.Figure(go.Bar(
+        x=env['ID_Func'],
+        y=env['Envolvimento'],
+        orientation='h',
+        textposition='auto',
+        text=env['ID_Func'],
+        insidetextfont=dict(family='Times', size=12)))
+    fig13.update_layout(main_config, height=120, template='superhero')
+
+    return fig13
+
+# Graph 14
+@app.callback(
+    Output('graph14','figure'),
+    Input('dropdown','value'),
+)
+
+def graph14(perfil):
+
+    mask = perfil_filtro(perfil)
+    st = df.loc[mask]
+
+    st = st.groupby('Satisfação Trabalho')['ID_Func'].count().reset_index()
+    st = st.sort_values('ID_Func',ascending=True)
+
+    fig14 = go.Figure(go.Bar(
+        x=st['ID_Func'],
+        y=st['Satisfação Trabalho'],
+        orientation='h',
+        textposition='auto',
+        text=st['ID_Func'],
+        insidetextfont=dict(family='Times', size=12)))
+    fig14.update_layout(main_config, height=120, template='superhero')
+
+    return fig14
+
+# Graph 15
+@app.callback(
+    Output('graph15','figure'),
+    Input('dropdown','value'),
+)
+
+def graph15(perfil):
+
+    mask = perfil_filtro(perfil)
+    rel = df.loc[mask]
+
+    rel = rel.groupby('Relacionamento')['ID_Func'].count().reset_index()
+    rel = rel.sort_values('ID_Func',ascending=True)
+
+    fig15 = go.Figure(go.Bar(
+        x=rel['ID_Func'],
+        y=rel['Relacionamento'],
+        orientation='h',
+        textposition='auto',
+        text=rel['ID_Func'],
+        insidetextfont=dict(family='Times', size=12)))
+    fig15.update_layout(main_config, height=120, template='superhero')
+
+    return fig15
+
+# Graph 16
+@app.callback(
+    Output('graph16','figure'),
+    Input('dropdown','value'),
+)
+
+def graph16(perfil):
+
+    mask = perfil_filtro(perfil)
+    bvp = df.loc[mask]
+
+    bvp = bvp.groupby('Balanço Vida-Profissão')['ID_Func'].count().reset_index()
+    bvp = bvp.sort_values('ID_Func',ascending=True)
+
+    fig16 = go.Figure(go.Bar(
+        x=bvp['ID_Func'],
+        y=bvp['Balanço Vida-Profissão'],
+        orientation='h',
+        textposition='auto',
+        text=bvp['ID_Func'],
+        insidetextfont=dict(family='Times', size=12)))
+    fig16.update_layout(main_config, height=120, template='superhero')
+
+    return fig16
+
 
 # Run server
 if __name__ == '__main__':
-    app.run_server(debug=False)
+    app.run_server(debug=True)
