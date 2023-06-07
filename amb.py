@@ -105,7 +105,7 @@ app.layout = dbc.Container(children=[
     dbc.Row([
         dbc.Col([
             dbc.Col([
-                html.Img(src=r'assets/logo.png',style={'height': '90%','width': '90%',
+                html.Img(src=r'assets/logo.png',style={'height': '70%','width': '70%',
                                                                'margin-top':'1px'})
                     ]),
             ],sm=3, md=2,lg=1),
@@ -113,10 +113,10 @@ app.layout = dbc.Container(children=[
             dbc.Card([
                dbc.CardBody([
                     dbc.Col([
-                        html.H3('Clima Organizacional'),
-                    ])
-                ], style=tab_card)
-            ])
+                        html.H4('Relatório - Clima Organizacional'),
+                    ],style={'margin-top':'10px'})
+                ])
+            ], style=tab_card)
         ],sm=12, md=10,lg=11),
     ], className='g-1 my-auto', style={'margin-top': '7px'}),
 
