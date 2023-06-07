@@ -105,7 +105,7 @@ app.layout = dbc.Container(children=[
     dbc.Row([
         dbc.Col([
             dbc.Col([
-                html.Img(src=r'assets/logo.png',style={'height': '70%','width': '70%',
+                html.Img(src=r'assets/logo.jpg',style={'height': '70%','width': '70%',
                                                                'margin-top':'1px'})
                     ]),
             ],sm=3, md=2,lg=1),
