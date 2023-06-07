@@ -56,7 +56,7 @@ options_month = sorted(options_month, key=lambda x: x['value'])
 #=========== Funções ============
 
 def tot_depto(df):
-    if df['Departamento'] == 'Pesq_Desenv':
+    if df['Departamento'] == 'P & D':
         return 961
     elif df['Departamento'] == 'Vendas':
         return 446
@@ -108,16 +108,16 @@ app.layout = dbc.Container(children=[
                 html.Img(src=r'assets/logo.jpg',style={'height': '70%','width': '70%',
                                                                'margin-top':'1px'})
                     ]),
-            ],sm=3, md=2,lg=1),
+            ],sm=2, md=2,lg=1),
         dbc.Col([
             dbc.Card([
                dbc.CardBody([
                     dbc.Col([
                         html.H4('Relatório - Clima Organizacional'),
-                    ],style={'margin-top':'10px'})
+                    ],style={'margin-top':'7px'})
                 ])
             ], style=tab_card)
-        ],sm=12, md=10,lg=11),
+        ],sm=10, md=10,lg=11),
     ], className='g-1 my-auto', style={'margin-top': '7px'}),
 
     # Linha 2
