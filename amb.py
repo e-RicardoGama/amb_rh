@@ -151,7 +151,7 @@ app.layout = dbc.Container(children=[
                             ])
                 ])
             ], style=tab_card)
-        ], sm=4, md=4, lg=2),
+        ], sm=3, md=3, lg=2),
         dbc.Col([
             dbc.Card([
                 dbc.CardBody([
@@ -194,7 +194,7 @@ app.layout = dbc.Container(children=[
                         ]),
                         ]),
                         ], style=tab_card),
-            ], sm=4, md=4, lg=4),
+            ], sm=9, md=9, lg=5),
         dbc.Col([
             dbc.Card([
                 dbc.CardBody([
@@ -213,7 +213,7 @@ app.layout = dbc.Container(children=[
                         ]),
                 ]),
             ],style=tab_card)
-        ],sm=6,md=6,lg=2),
+        ],sm=6,md=6,lg=3),
         dbc.Col([
             dbc.Card([
                 dbc.CardBody([
@@ -232,7 +232,7 @@ app.layout = dbc.Container(children=[
                     ]),
                 ]),
             ],style=tab_card),
-        ],sm=6,md=6,lg=4),
+        ],sm=6,md=6,lg=2),
     ], className='g-1 my-auto', style={'margin-top': '7px'}),
 
     # Linha 3
