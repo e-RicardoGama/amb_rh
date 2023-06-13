@@ -36,16 +36,23 @@ config_graph = {"displayModeBar": False, "showTips": False}
 
 #=========== Jupyter ==============
 
-df = pd.read_csv('datasets/base_seg2.csv',index_col=0)
+df = pd.read_csv('datasets/base3.csv',index_col=0)
 
 df['ID_Func'] = df['ID_Func'].astype(str)
 df['Emp'] = 'E1'
 
 df_orig = df.copy()
 
-perfil = {'Perfil 1': 1, 'Perfil 2': 2, 'Perfil 3': 3, 'Perfil 4': 4}
+perfil = {'Perfil 1': 1, 'Perfil 2': 2, 'Perfil 3': 3, 'Perfil 4': 4, 'Perfil 5':5, 'Perfil 6':6}
 
 df['Perfil'] = df['Perfil'].map(perfil)
+
+df = df[['Perfil', 'ID_Func', 'Idade', 'Atrito', 'Departamento',
+       'Grau Instrução', 'Especialidade', 'Satisfação Ambiente', 'Gênero',
+       'Envolvimento', 'Cargo', 'Satisfação Trabalho', 'Estado Civil', 'Renda',
+       'Relacionamento', 'Balanço Vida-Profissão', 'Análise Ambiente',
+       'Análise Envolvimento', 'Análise Trabalho', 'Análise Relacionamento',
+       'Análise Balanço Vida-Profissão','Emp']]
 
 # Criando opções pros filtros que virão
 options_month = [{'label': 'Todos Perfis', 'value': 0}]
@@ -96,6 +103,7 @@ def perfil_filtro(perfil):
         mask = df['Perfil'].isin([perfil])
     return mask
 
+
 # =========  Layout  =========== #
 app.layout = dbc.Container(children=[
 
@@ -113,8 +121,9 @@ app.layout = dbc.Container(children=[
             dbc.Card([
                dbc.CardBody([
                     dbc.Col([
-                        html.H4('Relatório - Clima Organizacional'),
-                    ],style={'margin-top':'7px'})
+                        html.H5('Relatório - Clima Organizacional'),
+                        html.H6('Agradecimento: https://www.ibm.com/communities/analytics/watson-analytics-blog/watson-analytics-use-case-for-hr-retaining-valuable-employees')
+                    ],style={'margin-top':'2px'})
                 ])
             ], style=tab_card)
         ],sm=10, md=10,lg=11),
@@ -150,32 +159,42 @@ app.layout = dbc.Container(children=[
                             dbc.Col([
                                 html.H6('Relatório dos Perfis para Download'),
                             ],sm=12,md=12,lg=12),
+                            ]),
                         dbc.Row([
-                            dbc.Col([
-                                dbc.Button('Todos Perfis', color='primary', id='btn_todos', n_clicks=0,
-                                           style={'margin-top': '10px'}),
-                                dcc.Download(id='todos'),
-                                    ],sm=2,md=2,lg=3),
                             dbc.Col([
                                 dbc.Button('Perfil 1', color='primary', id='btn_p1', n_clicks=0,
                                            style={'margin-top': '10px'}),
                                 dcc.Download(id='p1'),
-                                    ],sm=2,md=2,lg=3),
+                                    ],sm=2,md=2,lg=2),
                             dbc.Col([
                                 dbc.Button('Perfil 2', color='primary', id='btn_p2', n_clicks=0,
                                            style={'margin-top': '10px'}),
                                 dcc.Download(id='p2'),
-                                    ],sm=2,md=2,lg=3),
+                                    ],sm=2,md=2,lg=2),
                             dbc.Col([
                                 dbc.Button('Perfil 3', color='primary', id='btn_p3', n_clicks=0,
                                            style={'margin-top': '10px'}),
                                 dcc.Download(id='p3'),
-                                    ],sm=2,md=2,lg=3),
-                            ]),
+                                    ],sm=2,md=2,lg=2),
+                            dbc.Col([
+                                dbc.Button('Perfil 4', color='primary', id='btn_p4', n_clicks=0,
+                                           style={'margin-top': '10px'}),
+                                dcc.Download(id='p4'),
+                                    ],sm=2,md=2,lg=2),
+                            dbc.Col([
+                                dbc.Button('Perfil 5', color='primary', id='btn_p5', n_clicks=0,
+                                           style={'margin-top': '10px'}),
+                                dcc.Download(id='p5'),
+                                    ],sm=2,md=2,lg=2),
+                            dbc.Col([
+                                dbc.Button('Perfil 6', color='primary', id='btn_p6', n_clicks=0,
+                                           style={'margin-top': '10px'}),
+                                dcc.Download(id='p6'),
+                            ], sm=2, md=2, lg=2),
                         ]),
-                ]),
-            ], style=tab_card),
-        ],sm=8,md=8,lg=3),
+                        ]),
+                        ], style=tab_card),
+            ], sm=4, md=4, lg=4),
         dbc.Col([
             dbc.Card([
                 dbc.CardBody([
@@ -194,7 +213,7 @@ app.layout = dbc.Container(children=[
                         ]),
                 ]),
             ],style=tab_card)
-        ],sm=6,md=6,lg=3),
+        ],sm=6,md=6,lg=2),
         dbc.Col([
             dbc.Card([
                 dbc.CardBody([
@@ -343,7 +362,7 @@ app.layout = dbc.Container(children=[
                     ])
                 ])
             ], style=tab_card)
-            ],sm=12,md=12,lg=6)
+            ],sm=12,md=12,lg=6),
     ], className='g-1 my-auto', style={'margin-top': '7px'}),
 
     # Linha 5
@@ -391,24 +410,6 @@ app.layout = dbc.Container(children=[
 
 #========= CallBack =========
 
-# Download Perfis
-# Todos Perfis
-
-@app.callback(
-    Output('todos', 'data'),
-    Input('btn_todos', 'n_clicks'),
-    prevent_initial_call=True,
-)
-
-def func(n_clicks):
-
-    if n_clicks == None:
-        raise PreventUpdate
-
-    tp = df
-    tp = tp.sort_values('Perfil')
-
-    return dcc.send_data_frame(tp.to_excel, "Todos Perfis.xlsx", sheet_name="Sheet_name_1")
 
 # Perfil 1
 
@@ -424,6 +425,7 @@ def func(n_clicks):
         raise PreventUpdate
 
     p1 = df.loc[df['Perfil'] == 1]
+    p1.drop(columns=['Emp','Satisfação Ambiente','Envolvimento','Satisfação Trabalho','Relacionamento', 'Balanço Vida-Profissão'],inplace=True)
 
     return dcc.send_data_frame(p1.to_excel, "Perfil 1.xlsx", sheet_name="Sheet_name_1")
 
@@ -441,6 +443,7 @@ def func(n_clicks):
         raise PreventUpdate
 
     p2 = df.loc[df['Perfil'] == 2]
+    p2.drop(columns=['Emp','Satisfação Ambiente','Envolvimento','Satisfação Trabalho','Relacionamento', 'Balanço Vida-Profissão'],inplace=True)
 
     return dcc.send_data_frame(p2.to_excel, "Perfil 2.xlsx", sheet_name="Sheet_name_1")
 
@@ -458,8 +461,64 @@ def func(n_clicks):
         raise PreventUpdate
 
     p3 = df.loc[df['Perfil'] == 3]
+    p3.drop(columns=['Emp','Satisfação Ambiente','Envolvimento','Satisfação Trabalho','Relacionamento', 'Balanço Vida-Profissão'],inplace=True)
 
     return dcc.send_data_frame(p3.to_excel, "Perfil 3.xlsx", sheet_name="Sheet_name_1")
+
+# Perfil 4
+
+@app.callback(
+    Output('p4', 'data'),
+    Input('btn_p4', 'n_clicks'),
+    prevent_initial_call=True,
+)
+
+def func(n_clicks):
+
+    if n_clicks == None:
+        raise PreventUpdate
+
+    p4 = df.loc[df['Perfil'] == 4]
+    p4.drop(columns=['Emp','Satisfação Ambiente','Envolvimento','Satisfação Trabalho','Relacionamento', 'Balanço Vida-Profissão'],inplace=True)
+
+    return dcc.send_data_frame(p4.to_excel, "Perfil 4.xlsx", sheet_name="Sheet_name_1")
+
+# Perfil 5
+
+@app.callback(
+    Output('p5', 'data'),
+    Input('btn_p5', 'n_clicks'),
+    prevent_initial_call=True,
+)
+
+def func(n_clicks):
+
+    if n_clicks == None:
+        raise PreventUpdate
+
+    p5 = df.loc[df['Perfil'] == 5]
+    p5.drop(columns=['Emp','Satisfação Ambiente','Envolvimento','Satisfação Trabalho','Relacionamento', 'Balanço Vida-Profissão'],inplace=True)
+
+    return dcc.send_data_frame(p5.to_excel, "Perfil 5.xlsx", sheet_name="Sheet_name_1")
+
+# Perfil 6
+
+@app.callback(
+    Output('p6', 'data'),
+    Input('btn_p6', 'n_clicks'),
+    prevent_initial_call=True,
+)
+
+def func(n_clicks):
+
+    if n_clicks == None:
+        raise PreventUpdate
+
+    p6 = df.loc[df['Perfil'] == 6]
+    p6.drop(columns=['Emp','Satisfação Ambiente','Envolvimento','Satisfação Trabalho','Relacionamento', 'Balanço Vida-Profissão'],inplace=True)
+
+    return dcc.send_data_frame(p6.to_excel, "Perfil 6.xlsx", sheet_name="Sheet_name_1")
+
 
 # Graph 1
 
@@ -643,7 +702,7 @@ def graph7(perfil):
 
     fig7 = go.Figure()
     fig7.add_trace(go.Indicator(mode='number',
-                                 title={"text": f"<span style='font-size:80%'>Renda Média</span><br>"},
+                                 title={"text": f"<span style='font-size:70%'>Renda Média</span><br>"},
                                  value=renda['Renda'].iloc[0],
                                  number={'prefix': "$"},
                                  ))
@@ -667,7 +726,7 @@ def graph8(perfil):
 
     fig8 = go.Figure()
     fig8.add_trace(go.Indicator(mode='number',
-                                 title={"text": f"<span style='font-size:80%'>Média de Idade</span><br>"},
+                                 title={"text": f"<span style='font-size:70%'>Média de Idade</span><br>"},
                                  value=idade['Idade'].iloc[0],
                                  number={'prefix': ""},
                                  ))
