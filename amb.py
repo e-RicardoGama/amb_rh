@@ -213,7 +213,7 @@ app.layout = dbc.Container(children=[
                         ]),
                 ]),
             ],style=tab_card)
-        ],sm=6,md=6,lg=3),
+        ],sm=6,md=6,lg=2),
         dbc.Col([
             dbc.Card([
                 dbc.CardBody([
@@ -232,7 +232,7 @@ app.layout = dbc.Container(children=[
                     ]),
                 ]),
             ],style=tab_card),
-        ],sm=6,md=6,lg=2),
+        ],sm=6,md=6,lg=3),
     ], className='g-1 my-auto', style={'margin-top': '7px'}),
 
     # Linha 3
@@ -650,11 +650,12 @@ def graph6(perfil):
     depto = depto.groupby(['Departamento'])['ID_Func'].count().reset_index()
     depto['Total Func'] = depto.apply(tot_depto, axis=1)
     depto['% Func'] = (depto['ID_Func'] / depto['Total Func'] * 100).round(2)
+    depto.rename(columns={'ID_Func':'Func'},inplace=True)
 
     fig6 = ff.create_table(depto, height_constant=60)
 
     dados = depto['Departamento']
-    func = depto['ID_Func']
+    func = depto['Func']
     total_func = depto['Total Func']
 
     trace1 = go.Bar(x=dados, y=func,
@@ -702,7 +703,7 @@ def graph7(perfil):
 
     fig7 = go.Figure()
     fig7.add_trace(go.Indicator(mode='number',
-                                 title={"text": f"<span style='font-size:70%'>Renda Média</span><br>"},
+                                 title={"text": f"<span style='font-size:70%'>Renda</span><br>"},
                                  value=renda['Renda'].iloc[0],
                                  number={'prefix': "$"},
                                  ))
@@ -726,7 +727,7 @@ def graph8(perfil):
 
     fig8 = go.Figure()
     fig8.add_trace(go.Indicator(mode='number',
-                                 title={"text": f"<span style='font-size:70%'>Média de Idade</span><br>"},
+                                 title={"text": f"<span style='font-size:70%'>Idade</span><br>"},
                                  value=idade['Idade'].iloc[0],
                                  number={'prefix': ""},
                                  ))
@@ -749,11 +750,12 @@ def graph9(perfil):
     grau = grau.groupby(['Grau Instrução'])['ID_Func'].count().reset_index()
     grau['Total Func'] = grau.apply(tot_grau, axis=1)
     grau['% Func'] = (grau['ID_Func'] / grau['Total Func'] * 100).round(2)
+    grau.rename(columns={'ID_Func': 'Func'}, inplace=True)
 
     fig9 = ff.create_table(grau, height_constant=60)
 
     dados = grau['Grau Instrução']
-    func = grau['ID_Func']
+    func = grau['Func']
     total_func = grau['Total Func']
 
     trace1 = go.Bar(x=dados, y=func,
@@ -800,11 +802,12 @@ def graph10(perfil):
     gen = gen.groupby(['Gênero'])['ID_Func'].count().reset_index()
     gen['Total Func'] = gen.apply(tot_gen, axis=1)
     gen['% Func'] = (gen['ID_Func'] / gen['Total Func'] * 100).round(2)
+    gen.rename(columns={'ID_Func': 'Func'}, inplace=True)
 
     fig10 = ff.create_table(gen, height_constant=60)
 
     dados = gen['Gênero']
-    func = gen['ID_Func']
+    func = gen['Func']
     total_func = gen['Total Func']
 
     trace1 = go.Bar(x=dados, y=func,
@@ -851,11 +854,12 @@ def graph11(perfil):
     ec = ec.groupby(['Estado Civil'])['ID_Func'].count().reset_index()
     ec['Total Func'] = ec.apply(tot_est, axis=1)
     ec['% Func'] = (ec['ID_Func'] / ec['Total Func'] * 100).round(2)
+    ec.rename(columns={'ID_Func': 'Func'}, inplace=True)
 
     fig11 = ff.create_table(ec, height_constant=60)
 
     dados = ec['Estado Civil']
-    func = ec['ID_Func']
+    func = ec['Func']
     total_func = ec['Total Func']
 
     trace1 = go.Bar(x=dados, y=func,
