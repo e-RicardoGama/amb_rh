@@ -28,3 +28,10 @@ div.Select-control {
 .Select-value-label {
     color: white !important;
 }
+
+.perfil_avatar{
+    margin-left: auto;
+    margin-right: auto;
+    width: 60px !important;
+    background-color: rgba(0, 0, 0, 0) !important;
+}

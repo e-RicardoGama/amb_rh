@@ -113,8 +113,8 @@ app.layout = dbc.Container(children=[
     dbc.Row([
         dbc.Col([
             dbc.Col([
-                html.Img(src=r'assets/logo.jpg',style={'height': '70%','width': '70%',
-                                                               'margin-top':'1px'})
+                html.Img(src=r'assets/logo.jpg',className='perfil_avatar',
+                    style={'background-color': 'transparent', 'border-color': 'transparent'})
                     ]),
             ],sm=2, md=2,lg=1),
         dbc.Col([
@@ -1020,4 +1020,4 @@ def graph16(perfil):
 
 # Run server
 if __name__ == '__main__':
-    app.run_server(threaded=True)
+    app.run_server(debug=True)
